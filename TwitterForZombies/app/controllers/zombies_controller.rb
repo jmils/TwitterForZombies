@@ -4,7 +4,10 @@ class ZombiesController < ApplicationController
   # GET /zombies
   # GET /zombies.json
   def index
-    @zombies = Zombie.all
+    @zombies = Zombie.includes(:brain).all
+    @brain = Brain.where(:zombie_id)
+    # render json: @zombies
+    # render json: @brain
     @rotting_zombies = Zombie.rotting
   end
 
